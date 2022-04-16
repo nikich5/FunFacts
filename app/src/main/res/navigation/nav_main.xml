@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/feedFragment"
+    >
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="ru.nikich5.funfacts.ui.FeedFragment"
+        android:label="FeedFragment" >
+        <action
+            android:id="@+id/action_feedFragment_to_cardFactFragment"
+            app:destination="@id/cardFactFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cardFactFragment"
+        android:name="ru.nikich5.funfacts.ui.CardFactFragment"
+        android:label="CardFactFragment" />
+</navigation>
