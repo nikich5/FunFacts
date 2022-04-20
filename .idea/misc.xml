@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/enik3/AndroidStudioProjects/FunFacts/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.143" />
         <entry key="..\:/Users/enik3/AndroidStudioProjects/FunFacts/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/enik3/AndroidStudioProjects/FunFacts/app/src/main/res/layout/card_fact.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/enik3/AndroidStudioProjects/FunFacts/app/src/main/res/layout/fragment_feed.xml" value="0.25416666666666665" />

@@ -1,10 +1,7 @@
 package ru.nikich5.funfacts.dao
 
 import androidx.paging.PagingSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import ru.nikich5.funfacts.entity.FactEntity
 
@@ -13,7 +10,7 @@ interface FactDao {
     @Query("SELECT * FROM FactEntity")
     fun pagingSource(): PagingSource<Int, FactEntity>
 
-    @Query("SELECT * FROM FactEntity ORDER BY id DESC")
+    @Query("SELECT * FROM FactEntity")
     fun getAll(): Flow<List<FactEntity>>
 
     @Query("SELECT COUNT(*) == 0 FROM FactEntity")
@@ -27,4 +24,7 @@ interface FactDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(posts: List<FactEntity>)
+
+    @Query("DELETE FROM FactEntity WHERE id = :id")
+    suspend fun removeById(id: Long)
 }

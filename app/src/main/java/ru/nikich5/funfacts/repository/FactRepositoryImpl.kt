@@ -7,10 +7,9 @@ import ru.nikich5.funfacts.api.ApiService
 import ru.nikich5.funfacts.dao.FactDao
 import ru.nikich5.funfacts.dto.Fact
 import ru.nikich5.funfacts.entity.FactEntity
-import java.io.IOException
-import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.Exception
 
 @Singleton
 class FactRepositoryImpl @Inject constructor(
@@ -25,5 +24,13 @@ class FactRepositoryImpl @Inject constructor(
         pagingSourceFactory = dao::pagingSource
     ).flow.map { pagingData ->
         pagingData.map(FactEntity::toDto)
+    }
+
+    override suspend fun removeById(id: Long) {
+        try {
+            dao.removeById(id)
+        } catch (e: Exception) {
+            throw Exception(e)
+        }
     }
 }

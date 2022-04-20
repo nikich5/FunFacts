@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import ru.nikich5.funfacts.dto.Fact
 import ru.nikich5.funfacts.repository.FactRepository
 import javax.inject.Inject
@@ -20,4 +21,16 @@ class FactViewModel @Inject constructor(
         .cachedIn(viewModelScope)
 
     val data: Flow<PagingData<Fact>> = cached
+
+    var currentFact = Fact()
+
+    fun holdFact(fact: Fact) {
+        currentFact = fact
+    }
+
+    fun removeById(id: Long) {
+        viewModelScope.launch {
+            repository.removeById(id)
+        }
+    }
 }

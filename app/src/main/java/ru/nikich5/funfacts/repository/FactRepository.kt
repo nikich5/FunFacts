@@ -6,4 +6,5 @@ import ru.nikich5.funfacts.dto.Fact
 
 interface FactRepository {
     val data: Flow<PagingData<Fact>>
+    suspend fun removeById(id: Long)
 }

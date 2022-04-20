@@ -11,6 +11,7 @@ import ru.nikich5.funfacts.dto.Fact
 interface OnInteractionListener {
     fun clickedOnCard(fact: Fact) {}
     fun clickedOnShare(fact: Fact) {}
+    fun clickedOnDelete(fact: Fact) {}
 }
 
 class FactsAdapter(
@@ -36,12 +37,19 @@ class FactViewHolder(
         binding.apply {
             factText.text = fact.text
 
+            card.setOnClickListener {
+                onInteractionListener.clickedOnCard(fact)
+            }
             factText.setOnClickListener {
                 onInteractionListener.clickedOnCard(fact)
             }
             share.setOnClickListener {
                 onInteractionListener.clickedOnShare(fact)
             }
+            delete.setOnClickListener {
+                onInteractionListener.clickedOnDelete(fact)
+            }
+
         }
     }
 }

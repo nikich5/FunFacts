@@ -31,6 +31,7 @@ class FeedFragment : Fragment() {
 
         val adapter = FactsAdapter(object : OnInteractionListener {
             override fun clickedOnCard(fact: Fact) {
+                factViewModel.holdFact(fact)
                 findNavController().navigate(R.id.action_feedFragment_to_cardFactFragment)
             }
 
@@ -43,6 +44,10 @@ class FeedFragment : Fragment() {
                 val shareIntent = Intent.createChooser(intent, "")
                 startActivity(shareIntent)
             }
+
+            override fun clickedOnDelete(fact: Fact) {
+                factViewModel.removeById(fact.id)
+            }
         })
         binding.list.adapter = adapter
 
@@ -54,8 +59,7 @@ class FeedFragment : Fragment() {
 
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {
             adapter.loadStateFlow.collectLatest {
-                binding.swipeRefresh.isRefreshing =
-                    it.refresh is LoadState.Loading || it.append is LoadState.Loading
+                binding.swipeRefresh.isRefreshing = it.refresh is LoadState.Loading
             }
         }
 

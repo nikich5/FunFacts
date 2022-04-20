@@ -21,11 +21,9 @@ class FactRemoteMediator @Inject constructor(
     ): MediatorResult {
         try {
             val response = when (loadType) {
-                LoadType.REFRESH -> apiService.getFacts(3)
-//                (state.config.initialLoadSize)
+                LoadType.REFRESH -> apiService.getFacts(state.config.initialLoadSize)
                 LoadType.PREPEND -> return MediatorResult.Success(false)
-                LoadType.APPEND -> apiService.getFacts(3)
-//                (state.config.pageSize)
+                LoadType.APPEND -> apiService.getFacts(state.config.pageSize)
             }
 
             val body = response.body() ?: throw Exception()
