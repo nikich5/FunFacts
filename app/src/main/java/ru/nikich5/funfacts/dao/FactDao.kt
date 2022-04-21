@@ -27,4 +27,7 @@ interface FactDao {
 
     @Query("DELETE FROM FactEntity WHERE id = :id")
     suspend fun removeById(id: Long)
+
+    @Query("DELETE FROM FactEntity")
+    suspend fun removeAll()
 }

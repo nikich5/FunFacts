@@ -35,6 +35,7 @@ class FactViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(fact: Fact) {
         binding.apply {
+            title.text = "Fun fact №${fact.id}"
             factText.text = fact.text
 
             card.setOnClickListener {

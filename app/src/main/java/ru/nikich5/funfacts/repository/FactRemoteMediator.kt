@@ -28,6 +28,9 @@ class FactRemoteMediator @Inject constructor(
 
             val body = response.body() ?: throw Exception()
             val factList = body.map { FactEntity(text = it) }
+            if (loadType == LoadType.REFRESH) {
+                dao.removeAll()
+            }
             dao.insert(factList)
 
             return MediatorResult.Success(body.isEmpty())

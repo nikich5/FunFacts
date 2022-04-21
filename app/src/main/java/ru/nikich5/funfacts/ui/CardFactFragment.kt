@@ -23,6 +23,7 @@ class CardFactFragment : Fragment() {
         val binding = CardFactBinding.inflate(inflater, container, false)
         val fact = factViewModel.currentFact
         binding.apply {
+            title.text = "Fun fact №${fact.id}"
             factText.text = fact.text
 
             share.setOnClickListener {

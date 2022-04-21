@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Fun Facts</string>
     <string name="share">Share</string>
-    <string name="title">Fun fact</string>
+    <string name="title">Fun fact №</string>
 </resources>

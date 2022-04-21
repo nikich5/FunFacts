@@ -7,7 +7,7 @@
     android:layout_margin="@dimen/half_common_size"
     android:clickable="true"
     android:focusable="true"
-    app:cardBackgroundColor="#fbe9e7"
+    app:cardBackgroundColor="@color/card_background_color"
     app:cardCornerRadius="@dimen/half_common_size">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,7 +20,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/common_size"
-            android:text="@string/title"
             android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +40,7 @@
             android:id="@+id/factText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/common_size"
+            android:layout_marginVertical="@dimen/common_size"
             android:inputType="textMultiLine"
             android:textSize="@dimen/text_size"
             app:layout_constraintStart_toStartOf="parent"
