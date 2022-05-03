@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.collectLatest
 import ru.nikich5.funfacts.R
 import ru.nikich5.funfacts.adapter.FactsAdapter
 import ru.nikich5.funfacts.adapter.OnInteractionListener
+import ru.nikich5.funfacts.adapter.PagingLoadStateAdapter
 import ru.nikich5.funfacts.databinding.FragmentFeedBinding
 import ru.nikich5.funfacts.dto.Fact
 import ru.nikich5.funfacts.viewmodel.FactViewModel
@@ -49,7 +50,14 @@ class FeedFragment : Fragment() {
                 factViewModel.removeById(fact.id)
             }
         })
-        binding.list.adapter = adapter
+
+        binding.list.adapter = adapter.withLoadStateFooter(
+            PagingLoadStateAdapter(object : PagingLoadStateAdapter.OnInteractionListener {
+                override fun onRetry() {
+                    adapter.retry()
+                }
+            }),
+        )
 
         viewLifecycleOwner.lifecycle.coroutineScope.launchWhenCreated {
             factViewModel.data.collectLatest {
@@ -61,6 +69,7 @@ class FeedFragment : Fragment() {
             adapter.loadStateFlow.collectLatest {
                 binding.swipeRefresh.isRefreshing = it.refresh is LoadState.Loading
             }
+
         }
 
         binding.swipeRefresh.setOnRefreshListener {
